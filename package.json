@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-cli",
+  "version": "1.0.0",
+  "description": "Carlo Janea's portfolio with an interactive cli environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "framer-motion",
+    "emotion"
+  ],
+  "author": "Carlo Janea <janeacarlo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "framer-motion": "^1.7.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router": "^5.1.2"
+  }
+}
