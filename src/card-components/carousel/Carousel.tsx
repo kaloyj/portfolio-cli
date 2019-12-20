@@ -1,19 +1,44 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import CarouselTracker from "./CarouselTracker";
+import CarouselContext from "./CarouselContext";
 
-const Carousel: FunctionComponent = ({ children }) => {
+export interface TrackerProps {
+  count: number;
+  initial?: number;
+}
+
+const Carousel: FunctionComponent<TrackerProps> = ({
+  children,
+  count,
+  initial = 0
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(initial);
   return (
-    <div
-      className="flex-1"
-      css={css`
-        align-items: center;
-      `}
-    >
-      <CarouselTracker count={7}></CarouselTracker>
-      {children}
-    </div>
+    <CarouselContext.Provider value={{ count, currentIndex, setCurrentIndex }}>
+      <div
+        className="flex-1"
+        css={css`
+          flex: 0 0 100%;
+          margin: 0;
+          overflow: hidden;
+          align-items: center;
+        `}
+      >
+        <CarouselTracker></CarouselTracker>
+        <div
+          css={css`
+            flex: 0 0 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            transform: translateX(-86%);
+          `}
+        >
+          {children}
+        </div>
+      </div>
+    </CarouselContext.Provider>
   );
 };
 

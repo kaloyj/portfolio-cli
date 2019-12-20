@@ -1,21 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { accentColor } from "../../global-styles/colors";
-import { useState } from "react";
+import { useContext } from "react";
+import CarouselContext from "./CarouselContext";
 
-interface TrackerProps {
-  count: number;
-  initial?: number;
-}
-
-function CarouselTracker({ count, initial = 0 }: TrackerProps) {
-  const [currentIndex, setCurrentIndex] = useState(initial);
+function CarouselTracker() {
+  const { count, currentIndex, setCurrentIndex } = useContext(CarouselContext);
   return (
     <div
       className="flex-1"
       css={css`
-        flex: 0 0 100%;
-        margin: 0;
         align-items: center;
         justify-content: space-between;
       `}

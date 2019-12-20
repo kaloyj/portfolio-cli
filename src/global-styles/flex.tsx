@@ -8,6 +8,7 @@ function Flex() {
         .flex-parent {
           display: flex;
           flex-flow: row wrap;
+          width: 100%;
         }
 
         .flex-1,

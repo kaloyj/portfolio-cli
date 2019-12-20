@@ -9,6 +9,8 @@ function GlobalStyles() {
         styles={css`
           body {
             margin: 0;
+            width: 100vw;
+            overflow-x: hidden;
           }
 
           *,

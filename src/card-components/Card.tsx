@@ -16,7 +16,8 @@ const Card: FunctionComponent<CardProps> = ({
       className="flex-parent"
       css={css`
         min-height: 100vh;
-        flex: 0 0 100%;
+        width: 100vw;
+        border: 1px solid black;
         align-content: flex-start;
         * {
           font-family: "Poppins", sans-serif;
