@@ -3,6 +3,7 @@ import { jsx, css } from "@emotion/core";
 import { FunctionComponent, useContext, useState, useEffect } from "react";
 import { lightGrayColor, dirtyWhiteColor } from "../../global-styles/colors";
 import CarouselContext from "./CarouselContext";
+import { motion } from "framer-motion";
 
 interface ItemProps {
   order: number;
@@ -22,8 +23,15 @@ const CarouselItem: FunctionComponent<ItemProps> = ({ children, order }) => {
     setItemOrder(generatedOrder);
   }, [currentIndex, order, count]);
 
+  const spring = {
+    type: "spring",
+    damping: 10,
+    stiffness: 60
+  };
+
   return (
-    <div
+    <motion.div
+      positionTransition={itemOrder == count - 1 ? false : spring}
       css={css`
         flex: 0 0 82%;
         height: 140px;
@@ -38,7 +46,7 @@ const CarouselItem: FunctionComponent<ItemProps> = ({ children, order }) => {
       `}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
 
