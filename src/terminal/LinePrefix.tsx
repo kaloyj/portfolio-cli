@@ -15,7 +15,7 @@ function LinePrefix() {
       `}
     >
       <span className="deeper-blue-color semi-bold">~</span>
-      <span className="yellow-color semi-bold">></span>
+      <span className="yellow-color semi-bold">&gt;</span>
     </div>
   );
 }

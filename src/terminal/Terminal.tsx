@@ -4,6 +4,7 @@ import { lightGrayColor, mainFontColor } from "../global-styles/colors";
 import TerminalNavBar from "./TerminalNavBar";
 import LinePrefix from "./LinePrefix";
 import NewLine from "./NewLine";
+import { Skills } from "./content";
 
 function Terminal() {
   return (
@@ -31,6 +32,7 @@ function Terminal() {
         <LinePrefix></LinePrefix>
         <NewLine></NewLine>
         <NewLine></NewLine>
+        <Skills />
       </div>
     </div>
   );

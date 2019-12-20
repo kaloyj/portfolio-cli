@@ -1,6 +1,5 @@
 import React from "react";
 import { Global, css } from "@emotion/core";
-import { Color } from "csstype";
 
 export const mainFontColor = "#1B1725";
 export const accentColor = "#623CEA";
