@@ -1,13 +1,16 @@
 import { hot } from "react-hot-loader/root";
 import React from "react";
 import { GlobalStyles } from "./global-styles";
-import { Contact } from "./card-components";
+import Terminal from "./terminal/Terminal";
+import { TerminalContextProvider } from "./TerminalContext";
 
 function App() {
   return (
     <div className="flex-parent">
       <GlobalStyles></GlobalStyles>
-      <Contact></Contact>
+      <TerminalContextProvider>
+        <Terminal></Terminal>
+      </TerminalContextProvider>
     </div>
   );
 }

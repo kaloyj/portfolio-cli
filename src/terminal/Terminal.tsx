@@ -1,12 +1,21 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { lightGrayColor, mainFontColor } from "../global-styles/colors";
+import {
+  lightGrayColor,
+  mainFontColor,
+  dirtyWhiteColor
+} from "../global-styles/colors";
 import TerminalNavBar from "./TerminalNavBar";
-import LinePrefix from "./LinePrefix";
 import NewLine from "./NewLine";
 import { Skills } from "./content";
+import { useContext } from "react";
+import { TerminalContext } from "../TerminalContext";
+import LinePrefix from "./LinePrefix";
 
 function Terminal() {
+  const { outputStack } = useContext(TerminalContext);
+
+  console.log({ outputStack });
   return (
     <div
       className="flex-parent"
@@ -29,10 +38,30 @@ function Terminal() {
           align-content: flex-start;
         `}
       >
-        <LinePrefix></LinePrefix>
+        {outputStack.map((line, index) => (
+          <div
+            key={index}
+            css={css`
+              display: flex;
+              flex-flow: row wrap;
+              flex: 0 0 100%;
+              span {
+                margin-left: 5px;
+              }
+            `}
+          >
+            <LinePrefix></LinePrefix>
+            <span
+              css={css`
+                color: ${dirtyWhiteColor};
+                display: inline;
+              `}
+            >
+              {line}
+            </span>
+          </div>
+        ))}
         <NewLine></NewLine>
-        <NewLine></NewLine>
-        <Skills />
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ function LinePrefix() {
       className="flex-parent"
       css={css`
         flex: 0 1 auto;
+        width: auto;
         background-color: transparent;
 
         span {

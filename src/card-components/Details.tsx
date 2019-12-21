@@ -19,45 +19,7 @@ function Details() {
         `}
       >
         <h2>Work #1</h2>
-        <div
-          css={css`
-            flex: 0 0 100%;
-            display: flex;
-            flex-flow: row wrap;
-            margin-left: 1px;
-          `}
-        >
-          {tech.map((techItem, index) => (
-            <span
-              key={techItem}
-              css={css`
-                flex: 0 1 auto;
-                display: flex;
-                align-items: center;
-              `}
-            >
-              <span
-                css={css`
-                  font-size: 12px;
-                `}
-              >
-                {techItem}
-              </span>
-              {index < tech.length - 1 ? (
-                <div
-                  css={css`
-                    display: inline-block;
-                    margin: 0 5px;
-                    width: 6px;
-                    height: 6px;
-                    background-color: ${accentColor};
-                    border-radius: 50%;
-                  `}
-                ></div>
-              ) : null}
-            </span>
-          ))}
-        </div>
+        <TechList tech={tech}></TechList>
       </div>
       <div
         css={css`
@@ -88,6 +50,50 @@ function Details() {
       >
         description
       </div>
+    </div>
+  );
+}
+
+export function TechList({ tech }: { tech: Array<string> }) {
+  return (
+    <div
+      css={css`
+        flex: 0 0 100%;
+        display: flex;
+        flex-flow: row wrap;
+        margin-left: 1px;
+      `}
+    >
+      {tech.map((techItem, index) => (
+        <span
+          key={techItem}
+          css={css`
+            flex: 0 1 auto;
+            display: flex;
+            align-items: center;
+          `}
+        >
+          <span
+            css={css`
+              font-size: 12px;
+            `}
+          >
+            {techItem}
+          </span>
+          {index < tech.length - 1 ? (
+            <div
+              css={css`
+                display: inline-block;
+                margin: 0 5px;
+                width: 6px;
+                height: 6px;
+                background-color: ${accentColor};
+                border-radius: 50%;
+              `}
+            ></div>
+          ) : null}
+        </span>
+      ))}
     </div>
   );
 }
