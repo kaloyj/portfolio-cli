@@ -1,13 +1,13 @@
 import { hot } from "react-hot-loader/root";
 import React from "react";
 import { GlobalStyles } from "./global-styles";
-import { Work } from "./card-components";
+import { Contact } from "./card-components";
 
 function App() {
   return (
     <div className="flex-parent">
       <GlobalStyles></GlobalStyles>
-      <Work></Work>
+      <Contact></Contact>
     </div>
   );
 }

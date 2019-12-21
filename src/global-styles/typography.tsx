@@ -33,7 +33,7 @@ function Typography() {
         }
 
         h3 {
-          font-size: 16px;
+          font-size: 20px;
         }
 
         h4 {
