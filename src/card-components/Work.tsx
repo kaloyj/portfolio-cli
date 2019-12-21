@@ -1,7 +1,9 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import Card from "./Card";
 import { Carousel } from "./carousel";
 import CarouselItem from "./carousel/CarouselItem";
+import Details from "./Details";
 
 function Work() {
   return (
@@ -13,6 +15,20 @@ function Work() {
           </CarouselItem>
         ))}
       </Carousel>
+
+      {true ? (
+        <Details />
+      ) : (
+        <h3
+          className="flex-1"
+          css={css`
+            margin-top: 8%;
+            margin-left: 4.5%;
+          `}
+        >
+          Select a work showcase.
+        </h3>
+      )}
     </Card>
   );
 }

@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { FunctionComponent } from "react";
+import SVGInline from "react-svg-inline";
+import CloseButton from "./close-button.svg";
 
 interface CardProps {
   cardTitle: string;
@@ -42,14 +44,15 @@ const Card: FunctionComponent<CardProps> = ({
               cursor: pointer;
             `}
           >
-            <span
+            <SVGInline
+              height="14px"
+              width="14px"
               css={css`
-                font-weight: 300;
-                font-size: 24px;
+                display: flex;
+                align-items: center;
               `}
-            >
-              x
-            </span>
+              svg={CloseButton}
+            />
           </button>
         ) : null}
       </div>

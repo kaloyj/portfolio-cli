@@ -45,7 +45,7 @@ function CarouselTracker() {
           }
 
           button > span {
-            font-weight: 600;
+            font-weight: 300;
             font-size: 20px;
           }
         `}
