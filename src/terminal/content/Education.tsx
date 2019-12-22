@@ -64,6 +64,7 @@ function Education() {
                       key={detail}
                       className={index === 0 ? "semi-bold" : ""}
                       css={css`
+                        width: 100%;
                         margin-bottom: 5%;
                         color: ${index == 0 ? accentColor : "inherit"};
                       `}

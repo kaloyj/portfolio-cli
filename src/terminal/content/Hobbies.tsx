@@ -8,7 +8,7 @@ import {
 
 function Hobbies() {
   const professional = [
-    "creating mock ups for dummy aps",
+    "creating mock ups for dummy apps",
     "SVG illustrations",
     "playing with open source",
     "JavaScript related podcasts/content",

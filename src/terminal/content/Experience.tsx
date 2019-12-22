@@ -64,6 +64,7 @@ function Experience() {
                       className={index === 0 ? "semi-bold" : ""}
                       css={css`
                         margin-bottom: 5%;
+                        width: 100%;
                         color: ${index == 0 ? redColor : "inherit"};
                         .emphasize {
                           color: ${redColor};
