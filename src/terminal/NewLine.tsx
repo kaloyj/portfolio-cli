@@ -2,8 +2,8 @@
 import { jsx, css } from "@emotion/core";
 import LinePrefix from "./LinePrefix";
 import { dirtyWhiteColor } from "../global-styles/colors";
-import { useContext } from "react";
-import { TerminalActionDispatcher } from "../TerminalContext";
+import { useContext, KeyboardEvent } from "react";
+import { TerminalActionDispatcher, mainKeyword, LOG } from "../TerminalContext";
 
 function NewLine() {
   const { dispatch } = useContext(TerminalActionDispatcher);
@@ -37,11 +37,22 @@ function NewLine() {
             border: none;
             color: ${dirtyWhiteColor};
           `}
-          onKeyPress={e => {
+          onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") {
-              let blocks = parseLine(e.target.value);
-              dispatch({ type: blocks[1], payload: e.target.value });
-              e.target.value = "";
+              let blocks = parseLine(e.currentTarget.value);
+              if (blocks[0] !== mainKeyword) {
+                dispatch({
+                  type: LOG,
+                  payload: [
+                    e.currentTarget.value,
+                    `Undefined keyword '${blocks[0]}'. Did you mean 'portfolio'?`
+                  ]
+                });
+              } else {
+                dispatch({ type: blocks[1], payload: e.currentTarget.value });
+              }
+
+              e.currentTarget.value = "";
             }
           }}
         ></input>
