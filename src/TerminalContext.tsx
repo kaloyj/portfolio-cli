@@ -13,11 +13,13 @@ import {
 } from "./terminal/content";
 
 const terminalInitialState: {
+  currentCard?: string;
   outputStack: Array<{
     type: "string" | "component";
     data: string | ElementType;
   }>;
 } = {
+  currentCard: "",
   outputStack: []
 };
 
@@ -35,30 +37,25 @@ export const HELP_ALIAS = "-h";
 export const CLEAR = "clear";
 
 const commandReducer = (
-  state: any,
+  commandState: any,
   action: {
     type: string;
     payload: { lines: Array<string>; selection: string };
   }
 ) => {
-  let selectionData;
   let stackItems;
   switch (action.type) {
     case SHOW:
     case SHOW_ALIAS:
-      selectionData = showReducer(action.payload.selection);
-      return {
-        outputStack: [
-          ...state.outputStack,
-          { type: "string", data: action.payload.lines[0] },
-          selectionData
-        ]
-      };
+      return showReducer(commandState, {
+        type: action.payload.selection,
+        payload: { ...action.payload }
+      });
     case VERSION:
     case VERSION_ALIAS:
       return {
         outputStack: [
-          ...state.outputStack,
+          ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
           { type: "string", data: "Carlo Janea Portfolio 1.0.0" }
         ]
@@ -69,7 +66,7 @@ const commandReducer = (
     case undefined:
       return {
         outputStack: [
-          ...state.outputStack,
+          ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
           { type: "component", data: Help }
         ]
@@ -83,12 +80,12 @@ const commandReducer = (
         return { type: "string", data: lines };
       });
       return {
-        outputStack: [...state.outputStack, ...stackItems]
+        outputStack: [...commandState.outputStack, ...stackItems]
       };
     default:
       return {
         outputStack: [
-          ...state.outputStack,
+          ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
           {
             type: "string",
@@ -110,26 +107,66 @@ export const HOBBIES = "--hobbies";
 export const HOBBIES_ALIAS = "-H";
 export const TECH = "--tech";
 export const TECH_ALIAS = "-t";
+export const CONTACT = "--contact";
+export const CONTACT_ALIAS = "-c";
 
-const showReducer = (selection: string) => {
-  switch (selection) {
+const showReducer = (state: any, action: { type: string; payload: any }) => {
+  switch (action.type) {
     case EDUCATION:
     case EDUCATION_ALIAS:
-      return { type: "component", data: Education };
+      return {
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] },
+          { type: "component", data: Education }
+        ]
+      };
     case EXPERIENCE:
     case EXPERIENCE_ALIAS:
-      return { type: "component", data: Experience };
+      return {
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] },
+          { type: "component", data: Experience }
+        ]
+      };
     case HOBBIES:
     case HOBBIES_ALIAS:
-      return { type: "component", data: Hobbies };
+      return {
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] },
+          { type: "component", data: Hobbies }
+        ]
+      };
     case TECH:
     case TECH_ALIAS:
-      return { type: "component", data: Skills };
+      return {
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] },
+          { type: "component", data: Skills }
+        ]
+      };
+    case CONTACT:
+    case CONTACT_ALIAS:
+      return {
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] }
+        ]
+      };
     default:
       return {
-        type: "string",
-        data: `Selection ${selection ||
-          "''"} does not exist. Use portfolio --help for further information.`
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] },
+          {
+            type: "string",
+            data: `Selection ${action.type ||
+              "''"} does not exist. Use portfolio --help for further information.`
+          }
+        ]
       };
   }
 };
