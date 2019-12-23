@@ -5,3 +5,4 @@ export { default as Contact } from "./Contact";
 export { default as Socials } from "./Socials";
 export { default as EmailForm } from "./EmailForm";
 export { default as Resume } from "./Resume";
+export { default as CardView } from "./CardView";

@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
 import SVGInline from "react-svg-inline";
 import CloseButton from "./close-button.svg";
+import { TerminalActionDispatcher, HIDE_CARD } from "../TerminalContext";
 
 interface CardProps {
   cardTitle: string;
@@ -13,6 +14,7 @@ const Card: FunctionComponent<CardProps> = ({
   cardTitle,
   allowClose = true
 }) => {
+  const { dispatch } = useContext(TerminalActionDispatcher);
   return (
     <div
       className="flex-parent"
@@ -21,6 +23,7 @@ const Card: FunctionComponent<CardProps> = ({
         width: 100vw;
         border: 1px solid black;
         align-content: flex-start;
+        background-color: white;
         * {
           font-family: "Poppins", sans-serif;
         }
@@ -43,6 +46,12 @@ const Card: FunctionComponent<CardProps> = ({
               background: transparent;
               cursor: pointer;
             `}
+            onClick={() => {
+              dispatch({
+                type: HIDE_CARD,
+                payload: {}
+              });
+            }}
           >
             <SVGInline
               height="14px"

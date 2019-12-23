@@ -13,13 +13,15 @@ import {
 } from "./terminal/content";
 
 const terminalInitialState: {
-  currentCard?: string;
+  showCard?: boolean;
+  currentCardRoute?: string;
   outputStack: Array<{
     type: "string" | "component";
     data: string | ElementType;
   }>;
 } = {
-  currentCard: "",
+  showCard: false,
+  currentCardRoute: "/",
   outputStack: []
 };
 
@@ -35,6 +37,8 @@ export const VERSION_ALIAS = "-v";
 export const HELP = "--help";
 export const HELP_ALIAS = "-h";
 export const CLEAR = "clear";
+
+export const HIDE_CARD = "--hide";
 
 const commandReducer = (
   commandState: any,
@@ -82,6 +86,15 @@ const commandReducer = (
       return {
         outputStack: [...commandState.outputStack, ...stackItems]
       };
+
+    case HIDE_CARD:
+      console.log("called hide!");
+      return {
+        ...commandState,
+        showCard: false,
+        currentCardRoute: "/"
+      };
+
     default:
       return {
         outputStack: [
@@ -109,6 +122,15 @@ export const TECH = "--tech";
 export const TECH_ALIAS = "-t";
 export const CONTACT = "--contact";
 export const CONTACT_ALIAS = "-c";
+export const WORK = "--WORK";
+export const WORK_ALIAS = "-w";
+export const RESUME = "--resume";
+export const RESUME_ALIAS = "-r";
+
+// card identifiers
+export const CONTACT_CARD = "/contact";
+export const WORK_CARD = "/work";
+export const RESUME_CARD = "/resume";
 
 const showReducer = (state: any, action: { type: string; payload: any }) => {
   switch (action.type) {
@@ -151,6 +173,28 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case CONTACT:
     case CONTACT_ALIAS:
       return {
+        showCard: true,
+        currentCardRoute: CONTACT_CARD,
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] }
+        ]
+      };
+    case WORK:
+    case WORK_ALIAS:
+      return {
+        showCard: true,
+        currentCardRoute: WORK_CARD,
+        outputStack: [
+          ...state.outputStack,
+          { type: "string", data: action.payload.lines[0] }
+        ]
+      };
+    case RESUME:
+    case RESUME_ALIAS:
+      return {
+        showCard: true,
+        currentCardRoute: RESUME_CARD,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] }
