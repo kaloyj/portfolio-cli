@@ -18,6 +18,12 @@ function GlobalStyles() {
           *:before {
             box-sizing: border-box;
           }
+
+          .main-body {
+            border: 3px solid yellow;
+            min-height: 100vh;
+            align-content: flex-start;
+          }
         `}
       ></Global>
       <Typography></Typography>

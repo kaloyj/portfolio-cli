@@ -5,11 +5,13 @@ import Terminal from "./terminal/Terminal";
 import { TerminalContextProvider } from "./TerminalContext";
 import { CardView } from "./card-components";
 import { BrowserRouter as Router } from "react-router-dom";
+import MainNavBar from "./NavBar";
 
 function App() {
   return (
-    <div className="flex-parent">
+    <div className="flex-parent main-body">
       <GlobalStyles></GlobalStyles>
+      <MainNavBar></MainNavBar>
       <TerminalContextProvider>
         <Router>
           <Terminal></Terminal>

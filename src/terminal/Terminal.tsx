@@ -25,6 +25,17 @@ function Terminal() {
         overflow: hidden;
         align-content: flex-start;
         background-color: ${mainFontColor};
+
+        @media only screen and (min-width: 640px) {
+          width: 80%;
+          margin-left: 10%;
+          height: 60vh;
+          align-items: center;
+          justify-content: center;
+          margin-top: 15vh; //recalculate when you figure out navbar height
+          box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.3),
+            0px 2px 20px 0px rgba(0, 0, 0, 0.35);
+        }
       `}
     >
       <TerminalNavBar></TerminalNavBar>
