@@ -12,6 +12,7 @@ const CardView = () => {
   const history = useHistory();
   useEffect(() => {
     history.push(currentCardRoute);
+    // please set focus on card when mounting
   }, [currentCardRoute, history]);
 
   return showCard ? (
@@ -23,8 +24,17 @@ const CardView = () => {
         position: absolute;
         top: 0;
         left: 0;
-        border: 3px solid yellow;
         background-color: white;
+
+        @media only screen and (min-width: 640px) {
+          width: 80vw;
+          left: 20vw;
+        }
+
+        @media only screen and (min-width: 1024px) {
+          width: 50vw;
+          left: 50vw;
+        }
       `}
     >
       <Switch>

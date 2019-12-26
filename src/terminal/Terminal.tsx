@@ -36,6 +36,13 @@ function Terminal() {
           box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.3),
             0px 2px 20px 0px rgba(0, 0, 0, 0.35);
         }
+
+        @media only screen and (min-width: 1024px) {
+          transition: all 0.5s ease;
+          &:hover {
+            transform: rotateY(40deg);
+          }
+        }
       `}
     >
       <TerminalNavBar></TerminalNavBar>
@@ -43,7 +50,7 @@ function Terminal() {
       {/* terminal body */}
       <div
         ref={terminalRef}
-        className="flex-1"
+        className="flex-1 terminal-body"
         css={css`
           margin: 0;
           flex: 0 0 100%;

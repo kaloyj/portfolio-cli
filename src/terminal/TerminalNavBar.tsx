@@ -5,7 +5,7 @@ import { lightGrayColor } from "../global-styles/colors";
 function TerminalNavBar() {
   return (
     <div
-      className="flex-parent"
+      className="flex-parent terminal-nav-bar"
       css={css`
         width: 100%;
         background-color: ${lightGrayColor};

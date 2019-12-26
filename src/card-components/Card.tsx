@@ -21,7 +21,6 @@ const Card: FunctionComponent<CardProps> = ({
       css={css`
         min-height: 100vh;
         width: 100vw;
-        border: 1px solid black;
         align-content: flex-start;
         background-color: white;
         * {

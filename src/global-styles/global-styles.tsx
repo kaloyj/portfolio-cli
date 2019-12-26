@@ -22,6 +22,7 @@ function GlobalStyles() {
           .main-body {
             min-height: 100vh;
             align-content: flex-start;
+            perspective: 1500px;
           }
         `}
       ></Global>
