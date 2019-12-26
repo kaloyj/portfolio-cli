@@ -15,6 +15,7 @@ import {
 const terminalInitialState: {
   showCard?: boolean;
   currentCardRoute?: string;
+  interactiveMode: boolean;
   outputStack: Array<{
     type: "string" | "component";
     data: string | ElementType;
@@ -22,7 +23,8 @@ const terminalInitialState: {
 } = {
   showCard: false,
   currentCardRoute: "/",
-  outputStack: []
+  outputStack: [],
+  interactiveMode: true
 };
 
 // keywords
@@ -39,6 +41,7 @@ export const HELP_ALIAS = "-h";
 export const CLEAR = "clear";
 
 export const HIDE_CARD = "--hide";
+export const TOGGLE_INTERACTIVE = "--toggle";
 
 const commandReducer = (
   commandState: any,
@@ -58,6 +61,7 @@ const commandReducer = (
     case VERSION:
     case VERSION_ALIAS:
       return {
+        ...commandState,
         outputStack: [
           ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -69,6 +73,7 @@ const commandReducer = (
     case "":
     case undefined:
       return {
+        ...commandState,
         outputStack: [
           ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -77,6 +82,7 @@ const commandReducer = (
       };
     case CLEAR:
       return {
+        ...commandState,
         outputStack: []
       };
     case LOG:
@@ -84,19 +90,25 @@ const commandReducer = (
         return { type: "string", data: lines };
       });
       return {
+        ...commandState,
         outputStack: [...commandState.outputStack, ...stackItems]
       };
 
     case HIDE_CARD:
-      console.log("called hide!");
       return {
         ...commandState,
         showCard: false,
         currentCardRoute: "/"
       };
+    case TOGGLE_INTERACTIVE:
+      return {
+        ...commandState,
+        interactiveMode: !commandState.interactiveMode
+      };
 
     default:
       return {
+        ...commandState,
         outputStack: [
           ...commandState.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -137,6 +149,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case EDUCATION:
     case EDUCATION_ALIAS:
       return {
+        ...state,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -146,6 +159,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case EXPERIENCE:
     case EXPERIENCE_ALIAS:
       return {
+        ...state,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -155,6 +169,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case HOBBIES:
     case HOBBIES_ALIAS:
       return {
+        ...state,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -164,6 +179,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case TECH:
     case TECH_ALIAS:
       return {
+        ...state,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] },
@@ -173,6 +189,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case CONTACT:
     case CONTACT_ALIAS:
       return {
+        ...state,
         showCard: true,
         currentCardRoute: CONTACT_CARD,
         outputStack: [
@@ -183,6 +200,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case WORK:
     case WORK_ALIAS:
       return {
+        ...state,
         showCard: true,
         currentCardRoute: WORK_CARD,
         outputStack: [
@@ -193,6 +211,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
     case RESUME:
     case RESUME_ALIAS:
       return {
+        ...state,
         showCard: true,
         currentCardRoute: RESUME_CARD,
         outputStack: [
@@ -202,6 +221,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
       };
     default:
       return {
+        ...state,
         outputStack: [
           ...state.outputStack,
           { type: "string", data: action.payload.lines[0] },

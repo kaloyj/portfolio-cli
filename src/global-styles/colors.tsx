@@ -8,6 +8,9 @@ export const yellowColor = "#F3C969";
 export const lightBlueColor = "#80CED7";
 export const deeperBlueColor = "#01BAEF";
 export const lightGrayColor = "#534B62";
+export const mediumLightGrayColor = "#bfbfbf";
+export const superLightGrayColor = "#cccccc";
+
 export const dirtyWhiteColor = "#F7EBEC";
 
 function Colors() {

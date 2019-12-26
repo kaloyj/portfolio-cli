@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="flex-parent main-body">
       <GlobalStyles></GlobalStyles>
-      <MainNavBar></MainNavBar>
       <TerminalContextProvider>
+        <MainNavBar></MainNavBar>
         <Router>
           <Terminal></Terminal>
           <CardView></CardView>

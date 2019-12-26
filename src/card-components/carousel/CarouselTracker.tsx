@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { accentColor } from "../../global-styles/colors";
+import { accentColor, superLightGrayColor } from "../../global-styles/colors";
 import { useContext } from "react";
 import CarouselContext from "./CarouselContext";
 
@@ -25,7 +25,9 @@ function CarouselTracker() {
             css={css`
               height: 12px;
               width: 12px;
-              background-color: ${currentIndex == i ? accentColor : "#cccccc"};
+              background-color: ${currentIndex == i
+                ? accentColor
+                : superLightGrayColor};
               border-radius: 50%;
               margin-left: 4px;
               display: inline-block;
