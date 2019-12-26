@@ -20,7 +20,6 @@ function GlobalStyles() {
           }
 
           .main-body {
-            border: 3px solid yellow;
             min-height: 100vh;
             align-content: flex-start;
           }
