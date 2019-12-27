@@ -55,7 +55,7 @@ function Terminal() {
 
           ${showCard && selectedView !== "terminal"
             ? ` transform: scale(0.9);
-                z-index: -1;
+                // z-index: -1;
 
                 &:hover,
                 &:focus {
@@ -75,16 +75,12 @@ function Terminal() {
             : ""}
           ${showCard && selectedView !== "terminal"
             ? ` transform: rotateY(40deg);
-                z-index: -1;
+                &:hover,
+                &:focus {
+                  transform: scale(1.035) rotateY(30deg)
+                }
               `
             : ""};
-
-          &:hover,
-          &:focus {
-            ${showCard && selectedView !== "terminal"
-              ? `transform: scale(1.035) rotateY(30deg)`
-              : ""}
-          }
         }
       `}
       onClick={() => {
