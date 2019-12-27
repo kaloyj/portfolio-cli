@@ -104,6 +104,7 @@ function Terminal() {
           : null;
       }}
       role="menuitem"
+      id="item-1"
       tabIndex={0}
     >
       <TerminalNavBar></TerminalNavBar>

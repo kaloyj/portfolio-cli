@@ -50,13 +50,13 @@ function EmailForm() {
         `}
       >
         <label htmlFor="user-email">Your Email</label>
-        <input id="user-email"></input>
+        <input id="user-email" name="user-email"></input>
 
         <label htmlFor="email-subject">Subject</label>
-        <input id="email-subject"></input>
+        <input id="email-subject" name="email-subject"></input>
 
         <label htmlFor="email-body">Body</label>
-        <textarea id="email-body"></textarea>
+        <textarea id="email-body" name="email-body"></textarea>
 
         <button
           css={css`

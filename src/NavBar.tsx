@@ -86,6 +86,8 @@ function MainNavBar() {
             aria-checked={interactiveMode ? "true" : "false"}
             aria-describedby="tooltipForToggle"
             id="interactiveMode"
+            name="interactiveMode"
+            aria-label="toggle interactive mode"
             css={css`
               border: none;
               padding: 0;

@@ -91,6 +91,7 @@ const Card: FunctionComponent<CardProps> = ({
         });
       }}
       role="menuitem"
+      id="item-2"
       tabIndex={0}
     >
       <div

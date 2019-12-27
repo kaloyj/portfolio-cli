@@ -14,8 +14,10 @@ function App() {
       <TerminalContextProvider>
         <MainNavBar></MainNavBar>
         <Router>
-          <Terminal></Terminal>
-          <CardView></CardView>
+          <div aria-owns="item-1 item-2" role="menu" className="flex-parent">
+            <Terminal></Terminal>
+            <CardView></CardView>
+          </div>
         </Router>
       </TerminalContextProvider>
     </div>

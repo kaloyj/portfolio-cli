@@ -36,6 +36,7 @@ function NewLine() {
         `}
       >
         <input
+          aria-label="enter command in terminal new line"
           css={css`
             width: 100%;
             background-color: transparent;
