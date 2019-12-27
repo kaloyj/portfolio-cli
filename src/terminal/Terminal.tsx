@@ -55,8 +55,6 @@ function Terminal() {
 
           ${showCard && selectedView !== "terminal"
             ? ` transform: scale(0.9);
-                // z-index: -1;
-
                 &:hover,
                 &:focus {
                   transform: scale(0.9)

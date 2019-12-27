@@ -55,10 +55,10 @@ const CardView = () => {
             }
           `}
           key="card-view"
-          initial={{ y: "100vh" }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-          exit={{ y: "100vh" }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          exit={{ scale: 0 }}
           onAnimationComplete={onAnimationComplete}
         >
           <Route

@@ -46,6 +46,8 @@ const Card: FunctionComponent<CardProps> = ({
         width: 100%;
         align-content: flex-start;
         background-color: white;
+        overflow: auto;
+        padding-bottom: 4%;
         box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.075),
           0px 2px 20px 0px rgba(0, 0, 0, 0.1);
 
