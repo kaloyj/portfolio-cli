@@ -14,23 +14,29 @@ import {
 interface CardProps {
   cardTitle: string;
   allowClose?: boolean;
+  animationDone: boolean;
 }
 const Card: FunctionComponent<CardProps> = ({
   children,
   cardTitle,
+  animationDone,
   allowClose = true
 }) => {
-  const { selectedView, showCard } = useContext(TerminalContext);
+  const { selectedView, showCard, currentCardRoute } = useContext(
+    TerminalContext
+  );
   const { dispatch } = useContext(TerminalActionDispatcher);
   const cardRef = useRef(null);
 
   useEffect(() => {
-    cardRef.current.focus();
-    dispatch({
-      type: SWITCH_VIEW,
-      payload: "card"
-    });
-  }, []);
+    if (animationDone) {
+      cardRef.current.focus();
+      dispatch({
+        type: SWITCH_VIEW,
+        payload: "card"
+      });
+    }
+  }, [animationDone, dispatch]);
 
   return (
     <motion.div
@@ -68,6 +74,7 @@ const Card: FunctionComponent<CardProps> = ({
           ${showCard && selectedView !== "card"
             ? ` margin-left: 0;
                 margin-top: 0;
+                z-index: 1;
                 transform: rotateY(-40deg) scale(0.8);
 
                 &:hover, &:focus {
@@ -91,8 +98,12 @@ const Card: FunctionComponent<CardProps> = ({
         });
       }}
       role="menuitem"
+      key={currentCardRoute}
       id="item-2"
       tabIndex={0}
+      // initial={{ y: "100vh" }}
+      // animate={{ y: "0" }}
+      exit={{ y: "100vh" }}
     >
       <div
         className="flex-1"

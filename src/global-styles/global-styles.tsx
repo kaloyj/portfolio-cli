@@ -20,9 +20,11 @@ function GlobalStyles() {
           }
 
           .main-body {
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
             align-content: flex-start;
             perspective: 1500px;
+            border: 3px solid black;
           }
         `}
       ></Global>

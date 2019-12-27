@@ -70,6 +70,7 @@ function Terminal() {
             ? ` width: 50vw;
                   justify-content: flex-start;
                   margin-left: 4%;
+                  margin-top: 10vh;
                   height: 50vh;
                 `
             : ""}

@@ -4,9 +4,9 @@ import Card from "./Card";
 import Socials from "./Socials";
 import EmailForm from "./EmailForm";
 
-function Contacts() {
+function Contacts({ animationDone }: { animationDone: boolean }) {
   return (
-    <Card cardTitle="Contact">
+    <Card cardTitle="Contact" animationDone={animationDone}>
       <div className="flex-1" css={css``}>
         <Socials />
         <EmailForm />

@@ -3,11 +3,11 @@ import { jsx, css } from "@emotion/core";
 import Card from "./Card";
 import { TechList } from "./Details";
 
-function Resume() {
+function Resume({ animationDone }: { animationDone: boolean }) {
   const tech = ["React", "Accessibility", "UI/UX", "Rails"];
   const socials = ["a", "b", "c", "d", "e"];
   return (
-    <Card cardTitle="Resume">
+    <Card cardTitle="Resume" animationDone={animationDone}>
       <div
         className="flex-parent"
         css={css`
