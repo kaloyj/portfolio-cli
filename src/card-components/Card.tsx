@@ -1,9 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useEffect, useRef } from "react";
 import SVGInline from "react-svg-inline";
 import CloseButton from "./close-button.svg";
-import { TerminalActionDispatcher, HIDE_CARD } from "../TerminalContext";
+import { motion } from "framer-motion";
+import {
+  TerminalActionDispatcher,
+  HIDE_CARD,
+  TerminalContext,
+  SWITCH_VIEW
+} from "../TerminalContext";
 
 interface CardProps {
   cardTitle: string;
@@ -14,19 +20,78 @@ const Card: FunctionComponent<CardProps> = ({
   cardTitle,
   allowClose = true
 }) => {
+  const { selectedView, showCard } = useContext(TerminalContext);
   const { dispatch } = useContext(TerminalActionDispatcher);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    cardRef.current.focus();
+    dispatch({
+      type: SWITCH_VIEW,
+      payload: "card"
+    });
+  }, []);
+
   return (
-    <div
+    <motion.div
       className="flex-parent"
       css={css`
-        min-height: 100vh;
-        width: 100vw;
+        height: 100vh;
+        width: 100%;
         align-content: flex-start;
         background-color: white;
+        box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.075),
+          0px 2px 20px 0px rgba(0, 0, 0, 0.1);
+
         * {
           font-family: "Poppins", sans-serif;
         }
+
+        @media only screen and (min-width: 640px) {
+          height: 100%;
+          transition: all 0.5s ease;
+          cursor: pointer;
+
+          ${showCard && selectedView !== "card"
+            ? ` margin-top: 10vh;
+                margin-left: 0;
+                transform: scale(0.7);
+
+                &:hover, &:focus {
+                  transform: scale(0.85);
+                }
+              `
+            : ""}
+        }
+
+        @media only screen and (min-width: 1024px) {
+          ${showCard && selectedView !== "card"
+            ? ` margin-left: 0;
+                margin-top: 0;
+                transform: rotateY(-40deg) scale(0.8);
+
+                &:hover, &:focus {
+                 transform: scale(0.85) rotateY(-30deg);
+                }
+              `
+            : ""}
+        }
       `}
+      ref={cardRef}
+      onClick={() => {
+        dispatch({
+          type: SWITCH_VIEW,
+          payload: "card"
+        });
+      }}
+      onKeyPress={() => {
+        dispatch({
+          type: SWITCH_VIEW,
+          payload: "card"
+        });
+      }}
+      role="menuitem"
+      tabIndex={0}
     >
       <div
         className="flex-1"
@@ -66,7 +131,7 @@ const Card: FunctionComponent<CardProps> = ({
       </div>
 
       {children}
-    </div>
+    </motion.div>
   );
 };
 

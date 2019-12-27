@@ -13,6 +13,7 @@ import {
 } from "./terminal/content";
 
 const terminalInitialState: {
+  selectedView: "terminal" | "card";
   showCard?: boolean;
   currentCardRoute?: string;
   interactiveMode: boolean;
@@ -21,6 +22,7 @@ const terminalInitialState: {
     data: string | ElementType;
   }>;
 } = {
+  selectedView: "terminal",
   showCard: false,
   currentCardRoute: "/",
   outputStack: [],
@@ -42,6 +44,7 @@ export const CLEAR = "clear";
 
 export const HIDE_CARD = "--hide";
 export const TOGGLE_INTERACTIVE = "--toggle";
+export const SWITCH_VIEW = "--switch";
 
 const commandReducer = (
   commandState: any,
@@ -98,12 +101,19 @@ const commandReducer = (
       return {
         ...commandState,
         showCard: false,
+        selectedView: "terminal",
         currentCardRoute: "/"
       };
     case TOGGLE_INTERACTIVE:
       return {
         ...commandState,
         interactiveMode: !commandState.interactiveMode
+      };
+    case SWITCH_VIEW:
+      console.log("switching to ", action.payload);
+      return {
+        ...commandState,
+        selectedView: action.payload
       };
 
     default:
@@ -188,9 +198,11 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
       };
     case CONTACT:
     case CONTACT_ALIAS:
+      console.log("calling contact!");
       return {
         ...state,
         showCard: true,
+        selectedView: "card",
         currentCardRoute: CONTACT_CARD,
         outputStack: [
           ...state.outputStack,
@@ -202,6 +214,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
       return {
         ...state,
         showCard: true,
+        selectedView: "card",
         currentCardRoute: WORK_CARD,
         outputStack: [
           ...state.outputStack,
@@ -213,6 +226,7 @@ const showReducer = (state: any, action: { type: string; payload: any }) => {
       return {
         ...state,
         showCard: true,
+        selectedView: "card",
         currentCardRoute: RESUME_CARD,
         outputStack: [
           ...state.outputStack,

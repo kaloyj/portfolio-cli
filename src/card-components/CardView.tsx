@@ -8,7 +8,9 @@ import Resume from "./Resume";
 import Work from "./Work";
 
 const CardView = () => {
-  const { showCard, currentCardRoute } = useContext(TerminalContext);
+  const { showCard, currentCardRoute, selectedView } = useContext(
+    TerminalContext
+  );
   const history = useHistory();
   useEffect(() => {
     history.push(currentCardRoute);
@@ -24,16 +26,24 @@ const CardView = () => {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: white;
+        background-color: transparent;
+        transition: all 0.5s ease;
 
         @media only screen and (min-width: 640px) {
-          width: 80vw;
+          width: 72vw;
+          margin-left: 4vw;
           left: 20vw;
+          min-height: auto;
+          height: 95vh;
+          margin-top: 2.5vh;
+
+          ${showCard && selectedView !== "card" ? ` margin-left: 8vw;` : ""}
         }
 
         @media only screen and (min-width: 1024px) {
-          width: 50vw;
+          width: 42vw;
           left: 50vw;
+          margin-left: 0;
         }
       `}
     >

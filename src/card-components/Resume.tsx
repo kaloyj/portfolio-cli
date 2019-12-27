@@ -66,7 +66,6 @@ function Resume() {
                   css={css`
                     height: 20px;
                     width: 20px;
-                    border: 1px solid black;
                     display: flex;
                     flex-flow: row wrap;
                     align-items: center;

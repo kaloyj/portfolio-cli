@@ -4,11 +4,16 @@ import { mainFontColor, dirtyWhiteColor } from "../global-styles/colors";
 import TerminalNavBar from "./TerminalNavBar";
 import NewLine from "./NewLine";
 import { useContext, ElementType, useRef, useEffect } from "react";
-import { TerminalContext } from "../TerminalContext";
+import {
+  TerminalContext,
+  TerminalActionDispatcher,
+  SWITCH_VIEW
+} from "../TerminalContext";
 import LinePrefix from "./LinePrefix";
 
 function Terminal() {
-  const { outputStack } = useContext(TerminalContext);
+  const { outputStack, showCard, selectedView } = useContext(TerminalContext);
+  const { dispatch } = useContext(TerminalActionDispatcher);
   const terminalRef = useRef(null);
 
   useEffect(() => {
@@ -33,17 +38,73 @@ function Terminal() {
           align-items: center;
           justify-content: center;
           margin-top: 5vh;
+          cursor: pointer;
+          transition: all 0.5s ease;
+          z-index: ${selectedView === "terminal" ? 1 : "auto"};
           box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.3),
             0px 2px 20px 0px rgba(0, 0, 0, 0.35);
+
+          ${showCard
+            ? ` width: 70vw;
+                justify-content: flex-start;
+                margin-top: 2.5vh;
+                margin-left: 4%;
+                height: 50vh;
+              `
+            : ""}
+
+          ${showCard && selectedView !== "terminal"
+            ? ` transform: scale(0.9);
+                z-index: -1;
+
+                &:hover,
+                &:focus {
+                  transform: scale(0.9)
+                }
+              `
+            : ""};
         }
 
         @media only screen and (min-width: 1024px) {
-          transition: all 0.5s ease;
-          &:hover {
-            transform: rotateY(40deg);
+          ${showCard
+            ? ` width: 50vw;
+                  justify-content: flex-start;
+                  margin-left: 4%;
+                  height: 50vh;
+                `
+            : ""}
+          ${showCard && selectedView !== "terminal"
+            ? ` transform: rotateY(40deg);
+                z-index: -1;
+              `
+            : ""};
+
+          &:hover,
+          &:focus {
+            ${showCard && selectedView !== "terminal"
+              ? `transform: scale(1.035) rotateY(30deg)`
+              : ""}
           }
         }
       `}
+      onClick={() => {
+        showCard
+          ? dispatch({
+              type: SWITCH_VIEW,
+              payload: "terminal"
+            })
+          : null;
+      }}
+      onKeyPress={() => {
+        showCard
+          ? dispatch({
+              type: SWITCH_VIEW,
+              payload: "terminal"
+            })
+          : null;
+      }}
+      role="menuitem"
+      tabIndex={0}
     >
       <TerminalNavBar></TerminalNavBar>
 
