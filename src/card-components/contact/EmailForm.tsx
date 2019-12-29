@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { dirtyWhiteColor, accentColor } from "../global-styles/colors";
+import { dirtyWhiteColor, accentColor } from "../../global-styles/colors";
 
 function EmailForm() {
   return (

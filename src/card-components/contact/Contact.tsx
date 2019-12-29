@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import Card from "./Card";
+import Card from "../Card";
 import Socials from "./Socials";
 import EmailForm from "./EmailForm";
 

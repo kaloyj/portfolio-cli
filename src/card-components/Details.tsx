@@ -1,9 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { accentColor } from "../global-styles/colors";
+import {
+  accentColor,
+  mainFontColor,
+  lightGrayColor
+} from "../global-styles/colors";
+import { WorkItemProps } from "./work/Work";
+import SVGInline from "react-svg-inline";
+import Placeholder from "./work/photo-placeholder.svg";
 
-function Details() {
-  const tech = ["React", "Typescript", "Redux"];
+function Details({ item }: { item: WorkItemProps }) {
   return (
     <div
       className="flex-1"
@@ -18,27 +24,43 @@ function Details() {
           flex: 0 0 100%;
         `}
       >
-        <h2>Work #1</h2>
-        <TechList tech={tech}></TechList>
+        <h2>{item.name}</h2>
+        <TechList tech={item.techList}></TechList>
       </div>
       <div
         css={css`
+          display: flex;
           flex: 0 0 100%;
           margin-top: 4%;
           height: 220px;
           overflow: hidden;
           border-radius: 15px;
+          background-color: ${lightGrayColor};
         `}
       >
-        <img
-          src="https://picsum.photos/200/300"
-          alt="work preview"
-          css={css`
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          `}
-        ></img>
+        {item.preview ? (
+          <img
+            src={item.preview}
+            alt={`${item.name} preview`}
+            css={css`
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            `}
+          ></img>
+        ) : (
+          <SVGInline
+            height="30px"
+            width="30px"
+            css={css`
+              display: flex;
+              flex: 0 0 100%;
+              align-items: center;
+              justify-content: center;
+            `}
+            svg={Placeholder}
+          />
+        )}
       </div>
 
       <div

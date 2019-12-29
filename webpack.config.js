@@ -24,13 +24,17 @@ module.exports = {
         }
       },
       {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: ["file-loader"]
+      },
+      {
         test: /\.svg$/,
         loader: "svg-inline-loader"
       }
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".svg"]
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".svg", ".png", ".jpeg"]
   },
   output: {
     filename: "index.js",

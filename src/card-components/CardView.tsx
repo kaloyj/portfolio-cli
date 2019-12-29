@@ -3,10 +3,10 @@ import { jsx, css } from "@emotion/core";
 import { useContext, useEffect, useState } from "react";
 import { TerminalContext } from "../TerminalContext";
 import { Route, Switch, useHistory } from "react-router-dom";
-import { Contact } from ".";
 import Resume from "./Resume";
-import Work from "./Work";
+import Work from "./work/Work";
 import { AnimatePresence, motion } from "framer-motion";
+import { Contact } from ".";
 
 const CardView = () => {
   const { showCard, currentCardRoute, selectedView } = useContext(

@@ -24,6 +24,8 @@ const Carousel: FunctionComponent<TrackerProps> = ({
           margin: 0;
           overflow: hidden;
           align-items: center;
+
+          padding-bottom: 4%;
         `}
       >
         <CarouselTracker></CarouselTracker>
@@ -32,8 +34,9 @@ const Carousel: FunctionComponent<TrackerProps> = ({
             flex: 0 0 100%;
             display: flex;
             flex-flow: row nowrap;
-            transform: translateX(-86%);
+            transform: translateX(-78%);
           `}
+          role="menu"
         >
           {children}
         </div>
